@@ -18,7 +18,7 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
   bool agreed = false;
 
   void _onAccountTap() {
-    Navigator.of(context).pop();
+    Navigator.of(context).pop(agreed);
   }
 
   @override
@@ -152,7 +152,7 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
                         style: GoogleFonts.inter(
                           color: Colors.white,
                           fontSize: Sizes.size20,
-                          fontWeight: FontWeight.w800,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),

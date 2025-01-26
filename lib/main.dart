@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:twitter/views/home_screen.dart';
+import 'package:twitter/views/sign_up_screen.dart';
 
 void main() {
   runApp(const TwitterApp());
@@ -22,7 +23,7 @@ class TwitterApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: HomeScreen(),
+      home: SignUpScreen(),
     );
   }
 }
