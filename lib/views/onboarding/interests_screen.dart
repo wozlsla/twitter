@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:twitter/constants/gaps.dart';
-import 'package:twitter/constants/sizes.dart';
-import 'package:twitter/main.dart';
-import 'package:twitter/views/onboarding/interests_detail_screen.dart';
-import 'package:twitter/widgets/app_bar.dart';
-import 'package:twitter/widgets/interest_button.dart';
+import '../../constants/gaps.dart';
+import '../../constants/sizes.dart';
+import '../../constants/theme/app_colors.dart';
+
+import '../../widgets/app_bar.dart';
+import '../../widgets/interest_button.dart';
+import 'interests_detail_screen.dart';
 
 final List<String> interests = [
   "Fashion & beauty",
@@ -61,7 +62,9 @@ class _InterestsScreenState extends State<InterestsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: CustomAppBar(
+        leadingType: LeadingType.none,
+      ),
       body: Scrollbar(
         controller: _scrollController,
         child: SingleChildScrollView(
@@ -81,7 +84,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
                   style: GoogleFonts.inter(
                     fontSize: Sizes.size28 + Sizes.size1,
                     fontWeight: FontWeight.w800,
-                    color: Theme.of(context).twitterBlack,
+                    color: TWColors.black,
                   ),
                 ),
                 Gaps.v24,
@@ -90,12 +93,12 @@ class _InterestsScreenState extends State<InterestsScreen> {
                   style: GoogleFonts.inter(
                     fontSize: Sizes.size16,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).twitterDarkGray,
+                    color: TWColors.darkGray,
                   ),
                 ),
                 Gaps.v10,
                 Divider(
-                  color: Theme.of(context).twitterExtraLightGray, // 선 색상
+                  color: TWColors.extraLightGray, // 선 색상
                   thickness: 1, // 선 두께
                 ),
                 Gaps.v28,
@@ -128,7 +131,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
                       style: GoogleFonts.inter(
                         fontSize: Sizes.size16,
                         fontWeight: FontWeight.w400,
-                        color: Theme.of(context).twitterDarkGray,
+                        color: TWColors.darkGray,
                       ),
                     )
                   : Text(""),
@@ -136,7 +139,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
                 width: 100,
                 child: CupertinoButton(
                   onPressed: _selectedCount >= 3 ? _onNextTap : null,
-                  color: Theme.of(context).twitterBlack,
+                  color: TWColors.black,
                   child: Text(
                     "Next",
                     style: TextStyle(color: Colors.white),

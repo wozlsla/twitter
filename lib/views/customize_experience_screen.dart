@@ -1,10 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:twitter/constants/gaps.dart';
-import 'package:twitter/constants/sizes.dart';
-import 'package:twitter/main.dart';
+import 'package:twitter/widgets/app_bar.dart';
+import '../constants/gaps.dart';
+import '../constants/sizes.dart';
+import '../constants/theme/app_colors.dart';
 
 class CustomizeExperienceScreen extends StatefulWidget {
   const CustomizeExperienceScreen({super.key});
@@ -24,21 +24,9 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leadingWidth: Sizes.size96,
-        leading: IconButton(
-            onPressed: _onAccountTap,
-            icon: Icon(
-              Icons.arrow_back,
-            )),
-        title: SvgPicture.asset(
-          "assets/icons/twitter.svg",
-          width: Sizes.size32,
-          colorFilter: ColorFilter.mode(
-            Theme.of(context).primaryColor,
-            BlendMode.srcIn,
-          ),
-        ),
+      appBar: CustomAppBar(
+        onLeadingTap: _onAccountTap,
+        leadingType: LeadingType.back,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -56,7 +44,7 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
                   style: GoogleFonts.inter(
                     fontSize: Sizes.size28 + Sizes.size1,
                     fontWeight: FontWeight.w800,
-                    color: Theme.of(context).twitterBlack,
+                    color: TWColors.black,
                   ),
                 ),
                 Gaps.v28,
@@ -65,7 +53,7 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
                   style: GoogleFonts.inter(
                     fontSize: Sizes.size20,
                     fontWeight: FontWeight.w800,
-                    color: Theme.of(context).twitterBlack,
+                    color: TWColors.black,
                   ),
                 ),
                 Gaps.v14,
@@ -77,7 +65,7 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
                         style: GoogleFonts.inter(
                           fontSize: Sizes.size16 + Sizes.size1,
                           fontWeight: FontWeight.w500,
-                          color: Theme.of(context).twitterBlack,
+                          color: TWColors.black,
                         ),
                       ),
                     ),
@@ -97,25 +85,25 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
                   text: TextSpan(
                     style: TextStyle(
                       fontSize: Sizes.size14 + Sizes.size1,
-                      color: Theme.of(context).twitterDarkGray,
+                      color: TWColors.darkGray,
                     ),
                     children: [
                       TextSpan(text: "By signing up, you agree to our "),
                       TextSpan(
                         text: "Terms",
-                        style: TextStyle(color: Theme.of(context).primaryColor),
+                        style: TextStyle(color: TWColors.blue),
                         recognizer: TapGestureRecognizer()..onTap = () {},
                       ),
                       TextSpan(text: ", "),
                       TextSpan(
                         text: "Privacy Policy ",
-                        style: TextStyle(color: Theme.of(context).primaryColor),
+                        style: TextStyle(color: TWColors.blue),
                         recognizer: TapGestureRecognizer()..onTap = () {},
                       ),
                       TextSpan(text: "and "),
                       TextSpan(
                         text: "Cookie Use",
-                        style: TextStyle(color: Theme.of(context).primaryColor),
+                        style: TextStyle(color: TWColors.blue),
                         recognizer: TapGestureRecognizer()..onTap = () {},
                       ),
                       TextSpan(
@@ -123,7 +111,7 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
                               ". Twitter may use your contact information, including your email address and phone number for purposes outlined in our Privacy Policy."),
                       TextSpan(
                         text: " Learn more",
-                        style: TextStyle(color: Theme.of(context).primaryColor),
+                        style: TextStyle(color: TWColors.blue),
                         recognizer: TapGestureRecognizer()..onTap = () {},
                       ),
                     ],
@@ -141,9 +129,7 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
                         vertical: 15,
                       ),
                       decoration: BoxDecoration(
-                        color: agreed
-                            ? Theme.of(context).twitterBlack
-                            : Theme.of(context).twitterLightGray,
+                        color: agreed ? TWColors.black : TWColors.lightGray,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: Text(

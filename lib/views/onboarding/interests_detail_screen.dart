@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:twitter/constants/gaps.dart';
-import 'package:twitter/constants/sizes.dart';
-import 'package:twitter/main.dart';
-import 'package:twitter/widgets/app_bar.dart';
-import 'package:twitter/widgets/interest_detail_button.dart';
+import '../../constants/gaps.dart';
+import '../../constants/sizes.dart';
+import '../../constants/theme/app_colors.dart';
+
+import '../../widgets/app_bar.dart';
+import '../../widgets/interest_detail_button.dart';
 
 const interests = {
   // Map<String, <List<List<String>>>
@@ -47,7 +48,9 @@ class _InterestsDetailScreenState extends State<InterestsDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: CustomAppBar(
+        leadingType: LeadingType.none,
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(bottom: Sizes.size20),
         child: Padding(
@@ -63,7 +66,7 @@ class _InterestsDetailScreenState extends State<InterestsDetailScreen> {
                 style: GoogleFonts.inter(
                   fontSize: Sizes.size28 + Sizes.size1,
                   fontWeight: FontWeight.w800,
-                  color: Theme.of(context).twitterBlack,
+                  color: TWColors.black,
                 ),
               ),
               Gaps.v20,
@@ -72,12 +75,12 @@ class _InterestsDetailScreenState extends State<InterestsDetailScreen> {
                 style: GoogleFonts.inter(
                   fontSize: Sizes.size16,
                   fontWeight: FontWeight.w400,
-                  color: Theme.of(context).twitterDarkGray,
+                  color: TWColors.darkGray,
                 ),
               ),
               Gaps.v10,
               Divider(
-                color: Theme.of(context).twitterExtraLightGray, // 선 색상
+                color: TWColors.extraLightGray, // 선 색상
                 thickness: 1, // 선 두께
               ),
               Gaps.v10,
@@ -91,7 +94,7 @@ class _InterestsDetailScreenState extends State<InterestsDetailScreen> {
                         entry.key,
                         style: TextStyle(
                           fontWeight: FontWeight.w800,
-                          color: Theme.of(context).twitterBlack,
+                          color: TWColors.black,
                           fontSize: Sizes.size16 + Sizes.size4,
                         ),
                       ),
@@ -121,7 +124,7 @@ class _InterestsDetailScreenState extends State<InterestsDetailScreen> {
                       }),
                       Gaps.v20,
                       Divider(
-                        color: Theme.of(context).twitterExtraLightGray, // 선 색상
+                        color: TWColors.extraLightGray, // 선 색상
                         thickness: 1, // 선 두께
                       ),
                       Gaps.v10,
@@ -144,7 +147,7 @@ class _InterestsDetailScreenState extends State<InterestsDetailScreen> {
                 width: 100,
                 child: CupertinoButton(
                   onPressed: _selectedCount >= 3 ? () {} : null,
-                  color: Theme.of(context).twitterBlack,
+                  color: TWColors.black,
                   child: Text(
                     "Next",
                     style: TextStyle(color: Colors.white),

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:twitter/constants/gaps.dart';
-import 'package:twitter/constants/sizes.dart';
-import 'package:twitter/main.dart';
-import 'package:twitter/views/confirmation_code_screen.dart';
-import 'package:twitter/views/customize_experience_screen.dart';
-import 'package:twitter/views/sign_up_screen.dart';
+import 'package:twitter/widgets/app_bar.dart';
+import '../constants/gaps.dart';
+import '../constants/sizes.dart';
+import '../constants/theme/app_colors.dart';
+
+import 'confirmation_code_screen.dart';
+import 'customize_experience_screen.dart';
+import 'sign_up_screen.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});
@@ -71,33 +72,9 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     return GestureDetector(
       onTap: _onScaffoldTap,
       child: Scaffold(
-        appBar: AppBar(
-          leadingWidth: Sizes.size96,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: Sizes.size20),
-            child: GestureDetector(
-              onTap: () => onSignUpTap(context),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Cancle",
-                  style: GoogleFonts.inter(
-                    color: Theme.of(context).twitterBlack,
-                    fontSize: Sizes.size20,
-                    fontWeight: FontWeight.w300,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          title: SvgPicture.asset(
-            "assets/icons/twitter.svg",
-            width: Sizes.size32,
-            colorFilter: ColorFilter.mode(
-              Theme.of(context).primaryColor,
-              BlendMode.srcIn,
-            ),
-          ),
+        appBar: CustomAppBar(
+          onLeadingTap: () => onSignUpTap(context), // context를 전달하여 실행
+          leadingType: LeadingType.cancel,
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: Sizes.size40),
@@ -115,29 +92,30 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       style: GoogleFonts.inter(
                         fontSize: Sizes.size28 + Sizes.size1,
                         fontWeight: FontWeight.w800,
-                        color: Theme.of(context).twitterBlack,
+                        color: TWColors.black,
                       ),
                     ),
                     Gaps.v24,
                     TextFormField(
                       style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: Sizes.size16 + Sizes.size2,
+                        color: TWColors.blue,
+                        fontSize: Sizes.size18,
                       ),
                       decoration: InputDecoration(
                         labelText: "Name",
+                        labelStyle: TextStyle(color: TWColors.darkGray),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: Theme.of(context).twitterExtraLightGray,
+                            color: TWColors.extraLightGray,
                           ),
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: Theme.of(context).twitterLightGray,
+                            color: TWColors.lightGray,
                           ),
                         ),
                       ),
-                      cursorColor: Theme.of(context).primaryColor,
+                      cursorColor: TWColors.blue,
                     ),
                     Gaps.v24,
                     TextFormField(
@@ -149,44 +127,46 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       keyboardType: TextInputType.emailAddress,
                       autocorrect: false,
                       style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: Sizes.size16 + Sizes.size2,
+                        color: TWColors.blue,
+                        fontSize: Sizes.size18,
                       ),
                       decoration: InputDecoration(
                         labelText: "Phone number or email address",
+                        labelStyle: TextStyle(color: TWColors.darkGray), // red?
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: Theme.of(context).twitterExtraLightGray,
+                            color: TWColors.extraLightGray,
                           ),
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: Theme.of(context).twitterLightGray,
+                            color: TWColors.lightGray,
                           ),
                         ),
                       ),
-                      cursorColor: Theme.of(context).primaryColor,
+                      cursorColor: TWColors.blue,
                     ),
                     Gaps.v24,
                     TextFormField(
                       style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: Sizes.size16 + Sizes.size2,
+                        color: TWColors.blue,
+                        fontSize: Sizes.size18,
                       ),
                       decoration: InputDecoration(
                         labelText: "Date of birth",
+                        labelStyle: TextStyle(color: TWColors.darkGray),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: Theme.of(context).twitterExtraLightGray,
+                            color: TWColors.extraLightGray,
                           ),
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: Theme.of(context).twitterLightGray,
+                            color: TWColors.lightGray,
                           ),
                         ),
                       ),
-                      cursorColor: Theme.of(context).primaryColor,
+                      cursorColor: TWColors.blue,
                     ),
                   ],
                 ),
@@ -201,7 +181,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                               style: TextStyle(
                                 fontSize: Sizes.size14 + Sizes.size1,
                                 fontWeight: FontWeight.w300,
-                                color: Theme.of(context).twitterDarkGray,
+                                color: TWColors.darkGray,
                               ),
                               children: [
                                 const TextSpan(
@@ -210,7 +190,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                 TextSpan(
                                   text: "Terms of Service",
                                   style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
+                                    color: TWColors.blue,
                                   ),
                                 ),
                                 const TextSpan(
@@ -219,7 +199,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                 TextSpan(
                                   text: "Privacy Policy",
                                   style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
+                                    color: TWColors.blue,
                                   ),
                                 ),
                                 const TextSpan(
@@ -228,7 +208,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                 TextSpan(
                                   text: "Cookie Use",
                                   style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
+                                    color: TWColors.blue,
                                   ),
                                 ),
                                 const TextSpan(
@@ -238,7 +218,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                 TextSpan(
                                   text: "Learn more",
                                   style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
+                                    color: TWColors.blue,
                                   ),
                                 ),
                                 const TextSpan(
@@ -248,7 +228,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                 TextSpan(
                                   text: "here",
                                   style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
+                                    color: TWColors.blue,
                                   ),
                                 ),
                                 const TextSpan(text: "."),
@@ -268,7 +248,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                             ? Container(
                                 padding: const EdgeInsets.all(15),
                                 decoration: BoxDecoration(
-                                  color: Theme.of(context).primaryColor,
+                                  color: TWColors.blue,
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                                 child: const Center(
@@ -276,7 +256,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                     "Sign up",
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: Sizes.size16 + Sizes.size2,
+                                      fontSize: Sizes.size18,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -286,15 +266,15 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                 padding: const EdgeInsets.all(15),
                                 decoration: BoxDecoration(
                                   color: _isFormValid()
-                                      ? Theme.of(context).twitterBlack
-                                      : Theme.of(context).twitterLightGray,
+                                      ? TWColors.black
+                                      : TWColors.lightGray,
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                                 child: Center(
                                   child: Text("Next",
                                       style: GoogleFonts.inter(
                                         color: Colors.white,
-                                        fontSize: Sizes.size16 + Sizes.size2,
+                                        fontSize: Sizes.size18,
                                         fontWeight: FontWeight.bold,
                                       )),
                                 ),

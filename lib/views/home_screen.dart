@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:twitter/views/sign_up_screen.dart';
+import '../constants/theme/app_colors.dart';
+
+import 'sign_up_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,7 +17,7 @@ class HomeScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => onScreenTap(context),
       child: Scaffold(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: TWColors.blue,
         body: Center(
           child: SvgPicture.asset(
             "assets/icons/twitter.svg",

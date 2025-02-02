@@ -2,11 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:twitter/constants/gaps.dart';
-import 'package:twitter/constants/sizes.dart';
-import 'package:twitter/main.dart';
-import 'package:twitter/views/password_screen.dart';
-import 'package:twitter/widgets/app_bar.dart';
+import '../constants/gaps.dart';
+import '../constants/sizes.dart';
+import '../constants/theme/app_colors.dart';
+
+import '../widgets/app_bar.dart';
+import 'password_screen.dart';
 
 class ConfirmationCodeScreen extends StatefulWidget {
   const ConfirmationCodeScreen({super.key});
@@ -49,7 +50,9 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
     return GestureDetector(
       onTap: _onScaffold,
       child: Scaffold(
-        appBar: CustomAppBar(),
+        appBar: CustomAppBar(
+          leadingType: LeadingType.back,
+        ),
         body: Padding(
           padding: EdgeInsets.only(
             left: Sizes.size40,
@@ -65,7 +68,7 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
                 style: GoogleFonts.inter(
                   fontSize: Sizes.size28 + Sizes.size1,
                   fontWeight: FontWeight.w800,
-                  color: Theme.of(context).twitterBlack,
+                  color: TWColors.black,
                 ),
               ),
               Gaps.v24,
@@ -74,7 +77,7 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
                 style: GoogleFonts.inter(
                   fontSize: Sizes.size16,
                   fontWeight: FontWeight.w400,
-                  color: Theme.of(context).twitterDarkGray,
+                  color: TWColors.darkGray,
                 ),
               ),
               Gaps.v32,
@@ -82,6 +85,7 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: List.generate(6, (index) {
                   return _CodeField(
+                    key: ValueKey(index), // warning..
                     onChanged: (value) => _isCodeValidate(index, value),
                   );
                 }),
@@ -114,13 +118,13 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
               children: [
                 Text(
                   "Didn't recieve email?",
-                  style: TextStyle(color: Theme.of(context).primaryColor),
+                  style: TextStyle(color: TWColors.blue),
                 ),
                 CupertinoButton(
                   onPressed: _isButtonEnabled ? _onNextTap : null,
                   padding: EdgeInsets.symmetric(vertical: Sizes.size20),
-                  color: Theme.of(context).twitterBlack,
-                  borderRadius: BorderRadius.circular(Sizes.size28),
+                  color: TWColors.black,
+                  borderRadius: BorderRadius.circular(28),
                   child: Text(
                     "Next",
                     style: TextStyle(
@@ -157,12 +161,18 @@ class _CodeField extends StatelessWidget {
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           counterText: "",
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: TWColors.blue,
+            ),
+          ),
           // border: OutlineInputBorder(),
         ),
         style: TextStyle(
           fontSize: Sizes.size28,
           fontWeight: FontWeight.w800,
         ),
+        cursorColor: TWColors.blue,
         onChanged: onChanged,
       ),
     );

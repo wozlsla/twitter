@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:twitter/constants/sizes.dart';
-import 'package:twitter/main.dart';
-import 'package:twitter/views/create_account_screen.dart';
+import '../constants/sizes.dart';
+import '../constants/theme/app_colors.dart';
+
+import '../views/create_account_screen.dart';
 
 class AuthButton extends StatelessWidget {
   final String text;
@@ -35,9 +36,9 @@ class AuthButton extends StatelessWidget {
             vertical: Sizes.size16,
           ),
           decoration: BoxDecoration(
-            color: isDark ? Theme.of(context).twitterBlack : Colors.white,
+            color: isDark ? TWColors.black : Colors.white,
             border: Border.all(
-              color: Theme.of(context).twitterExtraLightGray,
+              color: TWColors.extraLightGray,
               width: Sizes.size2,
             ),
             borderRadius: BorderRadius.circular(
@@ -56,9 +57,9 @@ class AuthButton extends StatelessWidget {
                 text,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.inter(
-                  fontSize: Sizes.size16 + Sizes.size2,
+                  fontSize: Sizes.size18,
                   fontWeight: FontWeight.w800,
-                  color: isDark ? Colors.white : Colors.black,
+                  color: isDark ? Colors.white : TWColors.black,
                 ),
               ),
             ],

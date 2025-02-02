@@ -2,10 +2,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:twitter/constants/gaps.dart';
-import 'package:twitter/constants/sizes.dart';
-import 'package:twitter/main.dart';
-import 'package:twitter/widgets/auth_button.dart';
+import 'package:twitter/widgets/app_bar.dart';
+import '../constants/gaps.dart';
+import '../constants/sizes.dart';
+import '../constants/theme/app_colors.dart';
+
+import '../widgets/auth_button.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -13,7 +15,7 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      appBar: CustomAppBar(leadingType: LeadingType.none),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -22,17 +24,9 @@ class SignUpScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SvgPicture.asset(
-                "assets/icons/twitter.svg",
-                width: Sizes.size32,
-                colorFilter: ColorFilter.mode(
-                  Theme.of(context).primaryColor,
-                  BlendMode.srcIn,
-                ),
+              SizedBox(
+                height: 160,
               ),
-              Gaps.v80,
-              Gaps.v80,
-              Gaps.v10,
               Text(
                 "See what's happening in the world right now.",
                 style: GoogleFonts.inter(
@@ -40,9 +34,9 @@ class SignUpScreen extends StatelessWidget {
                   fontWeight: FontWeight.w800,
                 ),
               ),
-              Gaps.v80,
-              Gaps.v80,
-              Gaps.v2,
+              SizedBox(
+                height: 140,
+              ),
               AuthButton(
                   icon: SvgPicture.asset(
                     "assets/icons/google.svg",
@@ -65,26 +59,26 @@ class SignUpScreen extends StatelessWidget {
               RichText(
                 text: TextSpan(
                   style: TextStyle(
-                    fontSize: Sizes.size16 + Sizes.size1,
-                    color: Theme.of(context).twitterDarkGray,
+                    fontSize: Sizes.size18,
+                    color: TWColors.darkGray,
                   ),
                   children: [
                     TextSpan(text: "By signing up, you agree to our "),
                     TextSpan(
                       text: "Terms",
-                      style: TextStyle(color: Theme.of(context).primaryColor),
+                      style: TextStyle(color: TWColors.blue),
                       recognizer: TapGestureRecognizer()..onTap = () {},
                     ),
                     TextSpan(text: ", "),
                     TextSpan(
                       text: "Privacy Policy ",
-                      style: TextStyle(color: Theme.of(context).primaryColor),
+                      style: TextStyle(color: TWColors.blue),
                       recognizer: TapGestureRecognizer()..onTap = () {},
                     ),
                     TextSpan(text: "and "),
                     TextSpan(
                       text: "Cookie Use",
-                      style: TextStyle(color: Theme.of(context).primaryColor),
+                      style: TextStyle(color: TWColors.blue),
                       recognizer: TapGestureRecognizer()..onTap = () {},
                     ),
                     TextSpan(text: "."),
@@ -106,15 +100,15 @@ class SignUpScreen extends StatelessWidget {
             Text(
               "Have an account already?",
               style: GoogleFonts.inter(
-                fontSize: Sizes.size14 + Sizes.size1,
-                color: Theme.of(context).twitterDarkGray,
+                fontSize: Sizes.size16,
+                color: TWColors.darkGray,
               ),
             ),
             Gaps.h5,
             Text(
               "Log in",
               style: GoogleFonts.inter(
-                color: Theme.of(context).primaryColor,
+                color: TWColors.blue,
               ),
             ),
           ],

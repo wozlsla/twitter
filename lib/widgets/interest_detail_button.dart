@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:twitter/constants/sizes.dart';
-import 'package:twitter/main.dart';
+import 'package:twitter/constants/theme/app_colors.dart';
 
 class InterestDetailButton extends StatefulWidget {
   final String interest;
@@ -37,19 +37,19 @@ class _InterestDetailButtonState extends State<InterestDetailButton> {
           horizontal: Sizes.size24,
         ),
         decoration: BoxDecoration(
-          color: _isSelected ? Theme.of(context).primaryColor : Colors.white,
+          color: _isSelected ? TWColors.blue : Colors.white,
           borderRadius: BorderRadius.circular(Sizes.size24),
           border: Border.all(
-            color: Theme.of(context).twitterExtraLightGray,
+            color: TWColors.extraLightGray,
           ),
         ),
         child: Text(
           widget.interest,
           textAlign: TextAlign.center,
           style: GoogleFonts.inter(
-            fontSize: Sizes.size14 + Sizes.size2,
+            fontSize: Sizes.size16,
             fontWeight: FontWeight.w600,
-            color: _isSelected ? Colors.white : Theme.of(context).twitterBlack,
+            color: _isSelected ? Colors.white : TWColors.black,
           ),
         ),
       ),
