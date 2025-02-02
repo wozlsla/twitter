@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:twitter/constants/gaps.dart';
 import 'package:twitter/constants/sizes.dart';
 import 'package:twitter/main.dart';
+import 'package:twitter/views/confirmation_code_screen.dart';
 import 'package:twitter/views/customize_experience_screen.dart';
 import 'package:twitter/views/sign_up_screen.dart';
 
@@ -37,6 +38,14 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         _agreed = agreed;
       });
     }
+  }
+
+  void _onSignUpTap() async {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ConfirmationCodeScreen(),
+      ),
+    );
   }
 
   void _onScaffoldTap() {
@@ -254,7 +263,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     child: FractionallySizedBox(
                       widthFactor: _agreed ? 1 : 0.3,
                       child: GestureDetector(
-                        onTap: _agreed ? () {} : _onNextTap,
+                        onTap: _agreed ? _onSignUpTap : _onNextTap,
                         child: _agreed
                             ? Container(
                                 padding: const EdgeInsets.all(15),
